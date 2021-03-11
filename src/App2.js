@@ -1,44 +1,12 @@
 import './App.css';
 import React, {useState} from 'react';
-
-
-const books = [
-    {
-        id: "603e1c03935f5f2d90595d0c",
-        title: "Magic Book of Spells",
-        description: "Spells Book",
-        author: "Alexis Morrigan",
-        rating: 8,
-    },
-    {
-        id: "603e1c03935f5f2d90595d0d",
-        title: "Magic Book of Easy Spells",
-        description: "Spells Book",
-        author: "Gugu Andra",
-        rating: 9,
-    },
-    {
-        id: "603e1c03935f5f2d90595d0f",
-        title: "Magic Book of Advanced Spells",
-        description: "Spells Book",
-        author: "Alexis Morrigan",
-        rating: 10,
-    },
-    {
-        id: "603e1c03935f5f2d9059560f",
-        title: "Magic Book of Advanced Spells 2",
-        description: "Spells Book",
-        author: "Alexis Morrigan",
-        rating: 10,
-    }
-];
-
+import useFetch from './services/useFetch';
 
 function renderBook(book) {
-    const {id, title, description, author} = book;
+    const {_id, title, description, author} = book;
 
     return (
-        <div key={id} className="book">
+        <div key={_id} className="book">
             <h3>{title}</h3>
             <p>{description}</p>
             <p>{author}</p>
@@ -46,11 +14,16 @@ function renderBook(book) {
     )
 }
 
-const App = () => {
+const App2 = () => {
     const [rate, setRate] = useState('');
+    const {data: books, error, loading} = useFetch('api/v1/books');
 
 
-    const filteredBooks = books.filter(book => book.rating.toString() === rate);
+    const filteredBooks = rate ? books.filter(book => book.rating.toString() === rate) : [];
+
+
+    if (error) throw error;
+    if (loading) return <p>Loading..........</p>
 
     return (
         <>
@@ -78,4 +51,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default App2;

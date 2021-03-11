@@ -1,13 +1,145 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.book-info-app a {
+    color: #cc0000;
+}
+
+.book-info-app a:focus,
+.book-info-app a:hover,
+.book-info-app a:active {
+    color: #8a0000;
+}
+
+.book-info-app input {
+    line-height: 2;
+    font-size: 16px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: none;
+    border-radius: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #eee;
+}
+
+.book-info-app button {
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid #ff0000;
+    background-color: #cc0000;
+    cursor: pointer;
+    padding: 8px 10px;
+    color: #eee;
+    border-radius: 3px;
+}
+
+.book-info-app button:disabled {
+    border-color: #dc9494;
+    background-color: #f16161;
+    cursor: unset;
+}
+
+.book-info-app button:hover:not(:disabled),
+.book-info-app button:active:not(:disabled),
+.book-info-app button:focus:not(:disabled) {
+    border-color: #cc0000;
+    background-color: #8a0000;
+}
+
+.book-info-app .totally-centered {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-info-app {
+    max-width: 500px;
+    margin: auto;
+}
+
+[class*='_isolated'] .book-info-app {
+    margin-top: 50px;
+}
+
+.book-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-form input {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.book-info {
+    height: 400px;
+    width: 600px;
+    margin: auto;
+    overflow: auto;
+    background-color: #eee;
+    border-radius: 4px;
+    padding: 10px;
+    position: relative;
+}
+
+.book-info.pokemon-loading {
+    opacity: 0.6;
+    transition: opacity 0s;
+    /* note: the transition delay is the same as the busyDelayMs config */
+    transition-delay: 0.4s;
+}
+
+.book-info h2 {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+.book-info img {
+    max-width: 100%;
+    max-height: 200px;
+}
+
+.book-info .book-info__img-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.book-info .book-info__fetch-time {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+}
+
+.book-info-app button.invisible-button {
+    border: none;
+    padding: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    font-weight: inherit;
+    background-color: transparent;
+    color: #000;
+}
+
+.book-info-app button.invisible-button:hover,
+.book-info-app button.invisible-button:active,
+.book-info-app button.invisible-button:focus {
+    border: none;
+    background-color: transparent;
 }
