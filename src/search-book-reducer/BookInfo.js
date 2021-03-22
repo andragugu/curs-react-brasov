@@ -3,7 +3,7 @@ import {bookReducer} from "../services/bookReducer";
 import {BookInfoFallback} from "./BookInfoFallBack";
 import BookDataView from "./BookDataView";
 import {fetchBook} from "../services/fetchBook";
-
+import {useThunkReducer} from "./useThunkReducer";
 
 
 const BookInfo = ({bookName}) => {
@@ -16,31 +16,36 @@ const BookInfo = ({bookName}) => {
         }
     }, []);
 
-    const [state, dispatch] = useReducer(bookReducer, {
+    const [state, dispatch] = useThunkReducer(bookReducer, {
         status: bookName ? 'pending' : 'idle',
         book: null,
         error: null
     })
 
-    useEffect(() => {
+    const getBookDetails = React.useCallback((dispatch) => {
         if (!bookName) {
-            return
+            return;
         }
-        dispatch({
-            type: 'fetchBookPending'
-        });
 
-        fetchBook(booksMap[bookName])
-            .then(
-                book => {
-                    dispatch({type: 'fetchedBookSuccess', book})
-                },
-                error => {
-                    dispatch({type: 'fetchedBookFailed', error})
-                }
-            )
+        dispatch({type: 'fetchBookPending'})
+        fetchBook(booksMap[bookName]).then(
+            book => {
+                dispatch({type: 'fetchedBookSuccess', book})
+            },
+            error => {
+                dispatch({type: 'fetchedBookFailed', error})
+            }
+        )
+    }, [fetchBook, bookName, booksMap])
 
+    // useEffect(() => {
+    //     dispatch((enhancedDispatched) => {
+    //         return getBookDetails(enhancedDispatched);
+    //     })
+    // }, [bookName, booksMap])
 
+    useEffect(() => {
+        dispatch(getBookDetails)
     }, [bookName, booksMap])
 
     const {book, status, error} = state;

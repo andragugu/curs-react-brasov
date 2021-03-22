@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import ReducerExample4 from "./useReducer/ReducerExample4";
-import BookSearch from './search-book-reducer/BookSearch';
 import reportWebVitals from './reportWebVitals';
 import ErrorBoundary from './ErrorBoundary';
+import Count from './react-closure/Count';
+import CountRef from "./react-closure/Count-ref";
+import CountEffect from "./react-closure/Count-effect";
+// import Container from "./react-error-boundary-custom/Container";
+// import Container from "./react-error-boundary/Container";
+import BookSearch from "./search-book-reducer/BookSearch";
 
 ReactDOM.render(
     <React.StrictMode>
-        <ErrorBoundary>
-            <BookSearch/>
-        </ErrorBoundary>
+        <BookSearch/>
     </React.StrictMode>,
     document.getElementById('root')
 );
